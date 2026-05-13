@@ -49,7 +49,7 @@ int main(int argc,char *argv[]) {
     }
 
     scan(&Token);//get the first token from input 
-    n=binexpr();// parse the expression 
+    n=binexpr(0);// parse the expression 
     printf("%d\n",interpretAST(n));//calculate the result
     
     exit(0);
