@@ -48,10 +48,19 @@ int main(int argc,char *argv[]) {
         exit(1);
     }
 
+    //create output file
+    if ((Outfile=fopen("out.s","w"))==NULL){
+        fprintf(stderr,"can't create out.s: %s\n",strerror(errno));
+        exit(1);
+    }
+
     scan(&Token);//get the first token from input 
     n=binexpr(0);// parse the expression 
+    generatecode(n);// generate the assembly code
     printf("%d\n",interpretAST(n));//calculate the result
     
+    fclose(Outfile);
+    fclose(Infile);
     exit(0);
     
 }
